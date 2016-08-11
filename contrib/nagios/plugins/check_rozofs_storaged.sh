@@ -170,8 +170,8 @@ test_storage_io()
    };;  
   esac
   
-  read=`awk '{if ($1=="read") print $9; }' $TMPFILE`
-  write=`awk '{if ($1=="write") print $9; }' $TMPFILE`
+  read=`awk 'BEGIN { FS=" *[|] *" } ; {if ($1=="read") print $5; }' $TMPFILE`
+  write=`awk 'BEGIN { FS=" *[|] *" } ; {if ($1=="write") print $5; }' $TMPFILE`
   all_read=$((all_read+read))
   all_write=$((all_write+write))
   
